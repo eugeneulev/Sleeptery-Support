@@ -1,10 +1,21 @@
 [project]
 name = "sleeptery-support"
 version = "0.1.0"
-description = "Add your description here"
+description = "AI-powered support assistant with RAG"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "fastapi>=0.131.0",
     "uvicorn>=0.41.0",
+    "chromadb>=1.0.0",
+    "litellm>=1.60.0",
+    "beautifulsoup4>=4.13.0",
+    "pypdf>=5.0.0",
+    "httpx>=0.28.0",
+    "python-multipart>=0.0.20",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.4",
 ]

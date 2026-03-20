@@ -1,0 +1,138 @@
+{
+  "info": {
+    "name": "Sleeptery Support API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Learn",
+      "item": [
+        {
+          "name": "Learn from text",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/learn",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Умное кольцо Sleeptery Ring отслеживает фазы сна, пульс и температуру тела. Зарядка через магнитную док-станцию, время работы — до 7 дней. Синхронизация с приложением по Bluetooth 5.0. Водонепроницаемость IP68.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Learn from URL",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/learn",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://example.com/instructions\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Learn from file (PDF/HTML/TXT)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/learn/file",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/path/to/document.pdf"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Query",
+      "item": [
+        {
+          "name": "Query strict (по базе)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/query",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"Как зарядить кольцо?\",\n  \"mode\": \"strict\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Query creative (мягкий ответ)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/query",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"Кольцо неправильно посчитало сон, показывает 3 часа хотя я спал 8\",\n  \"hint\": \"Пусть проверит что кольцо плотно сидит на пальце\",\n  \"mode\": \"creative\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Query with specific model",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/query",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"Можно ли носить кольцо в бассейне?\",\n  \"hint\": \"Да, можно, IP68\",\n  \"mode\": \"strict\",\n  \"model\": \"gemini/gemini-2.0-flash\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stats",
+      "item": [
+        {
+          "name": "Get stats",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/stats"
+          }
+        }
+      ]
+    }
+  ]
+}
