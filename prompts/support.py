@@ -50,3 +50,23 @@ def build_query_prompt(
     if length and length in LENGTH_INSTRUCTIONS:
         prompt += f"\n\n## Формат ответа:\n{LENGTH_INSTRUCTIONS[length]}"
     return prompt
+
+
+def build_dialog_prompt(
+    context: str,
+    dialog: str,
+    question: str | None = None,
+    hint: str | None = None,
+    length: str | None = None,
+) -> str:
+    prompt = (
+        f"## Контекст из базы знаний:\n{context}\n\n"
+        f"## Диалог с клиентом:\n{dialog}"
+    )
+    if question:
+        prompt += f"\n\n## Вопрос оператора:\n{question}"
+    if hint:
+        prompt += f"\n\n## Подсказка от оператора:\n{hint}"
+    if length and length in LENGTH_INSTRUCTIONS:
+        prompt += f"\n\n## Формат ответа:\n{LENGTH_INSTRUCTIONS[length]}"
+    return prompt
